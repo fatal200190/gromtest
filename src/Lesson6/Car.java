@@ -4,8 +4,6 @@ package Lesson6;
  * Created by Alex on 24.07.2017.
  */
 public class Car {
-    //test git
-    
     //1 fields
     int price;
     int yearOfManufacturing;
