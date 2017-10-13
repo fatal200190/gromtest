@@ -48,9 +48,9 @@ public class Controller {
         for (Room room1 : api1.getAll()){
             for (Room room2 : api2.getAll()){
                 if (room1 != null && room2 != null && room1.getPrice() == room2.getPrice() &&
-                        room1.getPersons()== room2.getPersons() && room1.getHotelName().equals(room2.getHotelName())&& room1.getCityName().equals(room2.getCityName()))
+                        room1.getPersons()== room2.getPersons() && room1.getHotelName().equals(room2.getHotelName())&& room1.getCityName().equals(room2.getCityName())){
                     result[count2] = room1;
-                count2++;
+                count2++;}
             }
         }
         return result;
