@@ -15,8 +15,8 @@ public class GoogleAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int count = 0;
         for (Room room : rooms){
-            if(room.getPersons() == persons && room.getCityName() == city &&
-                    room.getHotelName() == hotel && room.getPrice() == price) {
+            if(room.getPersons() == persons && room.getCityName().equals(city) &&
+                    room.getHotelName().equals(hotel)  && room.getPrice() == price) {
                 count++;
             }
         }
@@ -24,8 +24,8 @@ public class GoogleAPI implements API {
         int index = 0;
         int resIndex = 0;
         for (Room room : rooms) {
-            if (room != null && room.getPersons() == persons && room.getCityName() == city &&
-                    room.getHotelName() == hotel && room.getPrice() == price) {
+            if (room != null && room.getPersons() == persons && room.getCityName().equals(city) &&
+                    room.getHotelName().equals(hotel) && room.getPrice() == price) {
                 results[resIndex] = rooms[index];
                 resIndex++;
             }
