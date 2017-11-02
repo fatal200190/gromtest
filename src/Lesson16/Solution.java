@@ -1,6 +1,5 @@
 package Lesson16;
 
-import java.util.Arrays;
 
 /**
  * Created by Alex on 20.10.2017.
@@ -23,48 +22,26 @@ public class Solution {
 
 
     public static String mostCountedWord(String input){
-        String[] words = input.split(" ");
-
-        if (words.length == 0)
+        if (input.isEmpty()){
             return null;
-
-        String countedWord = null;
-
-        for (String word : words){
-            if(word.length() > 0 && checker(word)){
-                countedWord = word;
-                break;
-            }
         }
 
-        if (countedWord == null)
-            return null;
+        String [] words = input.split(" ");
 
-
-        Arrays.sort(words);
-        String maxCountedWord = null;
-        String word = null;
         int maxCount = 0;
-        int count = 1;
-        for (String w : words){
-            if (w.equals(word) && checker(w) && w.length() > 0){
-                count ++;
-            }
-            else {
+        String mostFrequent = null;
+        for (String word : words){
+            int count = 0;
+            for (String item : words){
+                if (word.equals(item) && word.length() > 0 && checker(word))
+                    count++;}
+
                 if (count > maxCount){
                     maxCount = count;
-                    maxCountedWord = word;
+                    mostFrequent = word;
                 }
-                word = w;
-                count = 1;
             }
-        }
-        if (count > maxCount) {
-            maxCount = count;
-            maxCountedWord = word;
-        }
-
-        return maxCountedWord;
+            return mostFrequent;
     }
 
 
