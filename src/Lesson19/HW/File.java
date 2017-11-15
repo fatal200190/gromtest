@@ -9,12 +9,17 @@ public class File {
     private String format;
     private long size;
 
-    public File(long id, String name, String format, long size) {
+    public File(long id, String name, String format, long size) throws Exception {
         this.id = id;
         this.name = name;
+        if (name.length() > 10) {
+            throw new Exception("invalid file name : size must be 10 symbols long ");
+        }
+
         this.format = format;
         this.size = size;
     }
+
 
     public long getId() {
         return id;
