@@ -33,10 +33,13 @@ public class Demo {
         controller.save(transaction7);
         controller.save(transaction8);
         controller.save(transaction9);
-        controller.save(transaction10);
-        System.out.println(Arrays.toString(controller.transactionList()));
-        System.out.println(Arrays.toString(controller.transactionList(1)));
+//        controller.save(transaction10);
+//        System.out.println(Arrays.toString(controller.transactionList()));
+//        System.out.println(Arrays.toString(controller.transactionList(1)));
 //        System.out.println(Arrays.toString(controller.transactionList("Odessa")));
+        System.out.println(controller.save(transaction10));
+        controller.save(transaction11);
+
 
 
 

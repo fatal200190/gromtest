@@ -19,24 +19,15 @@ public class TransactionDAO {
 
         validate(transaction);
 
-        int countPlaced = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null)
-                countPlaced++;
-        }
-
-        if (countPlaced < 9) {
-            int index = 0;
-            for (Transaction tr : transactions) {
-                if (tr == null) {
-                    transactions[index] = transaction;
-                    break;
-                }
-                index++;
+        int index = 0;
+        for (Transaction tr : transactions){
+            if (tr == null){
+                transactions[index] = transaction;
+                return transactions[index];
             }
+            index++;
         }
-
-        return transaction;
+        throw new InternalServerException("Out of bound. Transaction id "+ transaction.getId()+ " can't save.");
     }
 
 
