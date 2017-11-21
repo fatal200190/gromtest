@@ -11,17 +11,17 @@ public class Controller {
         return transactionDAO.save(transaction);
     }
 
-    Transaction[] transactionList() {
+    public Transaction[] transactionList() {
 
         return transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city) {
+    public Transaction[] transactionList(String city) {
 
         return transactionDAO.transactionList(city);
     }
 
-    Transaction[] transactionList(int amount) {
+    public Transaction[] transactionList(int amount) {
         return transactionDAO.transactionList(amount);
     }
 }

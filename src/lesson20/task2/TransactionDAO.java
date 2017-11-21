@@ -31,31 +31,48 @@ public class TransactionDAO {
     }
 
 
-    Transaction[] transactionList() {
-
-
-        return transactions;
-    }
-
-    Transaction[] transactionList(String city) {
-
+        public Transaction[] transactionList() {
         int count = 0;
-        for (Transaction transaction : transactions) {
-            if (transaction != null && transaction.getCity().equals(city))
+        for (Transaction tr : transactions){
+            if (tr != null)
                 count++;
         }
-        Transaction[] transactionsPerCity = new Transaction[count];
+
+        Transaction[]allTransactions = new Transaction[count];
+
         int index = 0;
-        for (Transaction transaction : transactions) {
-            if (transaction != null && transaction.getCity().equals(city))
-                transactionsPerCity[index] = transaction;
+        for (Transaction tr : transactions){
+            if (tr != null){
+                allTransactions[index] = tr;
+                index++;
+            }
+        }
+
+        return allTransactions;
+    }
+
+    public Transaction[] transactionList(String city) {
+
+        int count = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.getCity().equals(city))
+                count++;
+        }
+
+        Transaction[] transactionsPerCity = new Transaction[count];
+
+        int index = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.getCity().equals(city)){
+                transactionsPerCity[index] = tr;
             index++;
+            }
         }
 
         return transactionsPerCity;
     }
 
-    Transaction[] transactionList(int amount) {
+    public Transaction[] transactionList(int amount) {
 
 
         int count = 0;
@@ -75,6 +92,22 @@ public class TransactionDAO {
     }
 
     private void validate(Transaction transaction) throws Exception {
+        int countPlaced = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null)
+                countPlaced++;
+        }
+
+        for (Transaction tr : transactions){
+            if (tr != null && tr.equals(transaction)){
+                throw new BadRequestException("Transaction id: "+ transaction.getId() + " is already exist");
+            }
+        }
+
+        if (countPlaced > 9) {
+            throw new InternalServerException("Index out of bounds exception. Cant't be saved.");
+        }
+
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + ". Cant't be saved.");
 
@@ -99,21 +132,6 @@ public class TransactionDAO {
         }
         if (cityCount == 0) {
             throw new BadRequestException("Transaction " + transaction.getId() + " is impossible from this city " + transaction.getCity() + ". Cant't be saved.");
-        }
-
-        int countPlaced = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null)
-                countPlaced++;
-        }
-
-        if (countPlaced > 9) {
-            throw new InternalServerException("Index out of bounds exception. Cant't be saved.");
-        }
-        for (Transaction tr : transactions){
-            if (tr != null && tr.equals(transaction)){
-                throw new BadRequestException("Transaction id: "+ transaction.getId() + " is already exist");
-            }
         }
 
     }
