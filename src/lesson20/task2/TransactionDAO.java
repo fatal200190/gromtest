@@ -18,16 +18,23 @@ public class TransactionDAO {
     public Transaction save(Transaction transaction) throws Exception {
 
         validate(transaction);
-
-        int index = 0;
-        for (Transaction tr : transactions){
-            if (tr == null){
-                transactions[index] = transaction;
-                break;
-            }
-            index++;
+        int countPlaced = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null)
+                countPlaced++;
         }
-        return transaction;
+        if (countPlaced < 9) {
+
+            int index = 0;
+            for (Transaction tr : transactions) {
+                if (tr == null) {
+                    transactions[index] = transaction;
+                    break;
+                }
+                index++;
+            }
+        }
+        throw new InternalServerException("Index out of bounds exception. Transaction" + transaction.getId()+ " cant't be saved.");
     }
 
 
@@ -96,11 +103,7 @@ public class TransactionDAO {
     }
 
     private void validate(Transaction transaction) throws Exception {
-        int countPlaced = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null)
-                countPlaced++;
-        }
+
 
         for (Transaction tr : transactions){
             if (tr != null && tr.equals(transaction)){
@@ -108,9 +111,6 @@ public class TransactionDAO {
             }
         }
 
-        if (countPlaced > 9) {
-            throw new InternalServerException("Index out of bounds exception. Cant't be saved.");
-        }
 
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + ". Cant't be saved.");
