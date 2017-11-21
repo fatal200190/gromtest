@@ -18,13 +18,14 @@ public class TransactionDAO {
     public Transaction save(Transaction transaction) throws Exception {
 
         validate(transaction);
+
         int countPlaced = 0;
         for (Transaction tr : transactions) {
             if (tr != null)
                 countPlaced++;
         }
-        if (countPlaced < 9) {
 
+        if (countPlaced < 9) {
             int index = 0;
             for (Transaction tr : transactions) {
                 if (tr == null) {
@@ -34,7 +35,8 @@ public class TransactionDAO {
                 index++;
             }
         }
-        throw new InternalServerException("Index out of bounds exception. Transaction" + transaction.getId()+ " cant't be saved.");
+
+        return transaction;
     }
 
 
