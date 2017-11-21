@@ -27,7 +27,7 @@ public class TransactionDAO {
             }
             index++;
         }
-        return transactions[index];
+        return transaction;
     }
 
 
@@ -76,16 +76,20 @@ public class TransactionDAO {
 
 
         int count = 0;
-        for (Transaction transaction : transactions) {
-            if (transaction != null && transaction.getAmount() == amount)
-                count++;
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.getAmount() == amount)
+            count++;
         }
+
         Transaction[] transactionsPerAmount = new Transaction[count];
+
         int index = 0;
-        for (Transaction transaction : transactions) {
-            if (transaction != null && transaction.getAmount() == amount)
-                transactionsPerAmount[index] = transaction;
-            index++;
+
+        for (Transaction tr : transactions) {
+            if (tr != null && tr.getAmount() == amount){
+                transactionsPerAmount[index] = tr;
+                index++;
+            }
         }
 
         return transactionsPerAmount;

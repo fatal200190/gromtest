@@ -10,8 +10,8 @@ public class Demo {
     public static void main(String[] args) throws Exception{
 
         Transaction transaction1 = new Transaction(1001, "Kiev", 1, "pass", TransactionType.INCOME, new Date());
-        Transaction transaction2 = new Transaction(1002, "Kiev", 2, "pass", TransactionType.INCOME, new Date());
-        Transaction transaction3 = new Transaction(1003, "Kiev", 2, "pass", TransactionType.INCOME, new Date());
+        Transaction transaction2 = new Transaction(1002, "Odessa", 2, "pass", TransactionType.INCOME, new Date());
+        Transaction transaction3 = new Transaction(1003, "Kiev", 1, "pass", TransactionType.INCOME, new Date());
         Transaction transaction4 = new Transaction(1004, "Kiev", 3, "pass", TransactionType.INCOME, new Date());
         Transaction transaction5 = new Transaction(1005, "Kiev", 4, "pass", TransactionType.INCOME, new Date());
         Transaction transaction6 = new Transaction(1006, "Odessa", 6, "pass", TransactionType.INCOME, new Date());
@@ -36,7 +36,7 @@ public class Demo {
         controller.save(transaction10);
         System.out.println(Arrays.toString(controller.transactionList()));
         System.out.println(Arrays.toString(controller.transactionList(1)));
-        System.out.println(Arrays.toString(controller.transactionList("Odessa")));
+//        System.out.println(Arrays.toString(controller.transactionList("Odessa")));
 
 
 
