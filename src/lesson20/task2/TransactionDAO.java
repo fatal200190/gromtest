@@ -16,12 +16,9 @@ public class TransactionDAO {
 
 
     public Transaction save(Transaction transaction) throws Exception {
-        for (Transaction tr : transactions){
-            if (tr != null && tr.equals(transaction)){
-                throw new BadRequestException("Transaction id: "+ transaction.getId() + " is already exist");
-            }
-        }
+
         validate(transaction);
+
         int index = 0;
         for (Transaction tr : transactions){
             if (tr == null){
@@ -87,11 +84,11 @@ public class TransactionDAO {
             sum += tr.getAmount();
             count++;
         }
-        if (sum > utils.getLimitTransactionsPerDayAmount()) {
+        if ((sum + transaction.getAmount()) > utils.getLimitTransactionsPerDayAmount()) {
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Cant't be saved.");
         }
 
-        if (count > utils.getLimitTransactionsPerDayCount()) {
+        if (count >= utils.getLimitTransactionsPerDayCount()) {
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Cant't be saved.");
         }
 
@@ -101,7 +98,7 @@ public class TransactionDAO {
                 cityCount++;
         }
         if (cityCount == 0) {
-            throw new BadRequestException("Transaction " + transaction.getId() + " is impossible from this city" + transaction.getCity() + ". Cant't be saved.");
+            throw new BadRequestException("Transaction " + transaction.getId() + " is impossible from this city " + transaction.getCity() + ". Cant't be saved.");
         }
 
         int countPlaced = 0;
@@ -112,6 +109,11 @@ public class TransactionDAO {
 
         if (countPlaced > 9) {
             throw new InternalServerException("Index out of bounds exception. Cant't be saved.");
+        }
+        for (Transaction tr : transactions){
+            if (tr != null && tr.equals(transaction)){
+                throw new BadRequestException("Transaction id: "+ transaction.getId() + " is already exist");
+            }
         }
 
     }

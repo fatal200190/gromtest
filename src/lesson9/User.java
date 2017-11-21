@@ -1,4 +1,4 @@
-package Lesson9;
+package lesson9;
 
 /**
  * Created by Alex on 10.08.2017.
@@ -33,5 +33,25 @@ public class User {
                 ", name='" + name + '\'' +
                 ", sessionId='" + sessionId + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != user.id) return false;
+        if (!name.equals(user.name)) return false;
+        return sessionId.equals(user.sessionId);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + name.hashCode();
+        result = 31 * result + sessionId.hashCode();
+        return result;
     }
 }

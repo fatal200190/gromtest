@@ -5,7 +5,7 @@ package lesson20.task2;
  */
 public class Utils {
     private int limitSimpleTransactionAmount = 10;
-    private int limitTransactionsPerDayCount = 100;
+    private int limitTransactionsPerDayCount = 10;
     private int limitTransactionsPerDayAmount = 40;
     private String[] cities = {"Kiev", "Odessa"};
 
