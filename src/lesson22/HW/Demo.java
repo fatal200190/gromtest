@@ -1,4 +1,4 @@
-package lesson20.task2;
+package lesson22.HW;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -38,19 +38,6 @@ public class Demo {
         System.out.println(Arrays.toString(controller.transactionList(1)));
         System.out.println(Arrays.toString(controller.transactionList("Odessa")));
         System.out.println(controller.save(transaction10));
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
