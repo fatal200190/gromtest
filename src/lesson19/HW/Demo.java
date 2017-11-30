@@ -36,7 +36,7 @@ public class Demo {
         controller.transferAll(storage3,storage1);
         System.out.println(Arrays.toString(storage1.getFiles()));
 //        controller.put(storage1,file3);
-//        System.out.println(Arrays.toString(storage1.getFiles()));
+//        Sys.out.println(Arrays.toString(storage1.getFiles()));
 
     }
 }

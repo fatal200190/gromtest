@@ -84,17 +84,17 @@ public class Main {
 
 //        bankSystem.withdraw(user,150);
 //
-//        System.out.println(user.getBalance());
+//        Sys.out.println(user.getBalance());
 
 //        bankSystem.fund(user,10001);
 //
-//        System.out.println(user.getBalance());
+//        Sys.out.println(user.getBalance());
 
 //        bankSystem.transferMoney(user,user1,100);
-//        System.out.println(user.getBalance());
-//        System.out.println(user1.getBalance());
+//        Sys.out.println(user.getBalance());
+//        Sys.out.println(user1.getBalance());
 //
 //        bankSystem.paySalary(user1);
-//        System.out.println(user1.getBalance());
+//        Sys.out.println(user1.getBalance());
     }
 }

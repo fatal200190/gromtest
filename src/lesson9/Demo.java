@@ -8,13 +8,13 @@ import lesson9.Utils.Checker;
 public class Demo {
     public static void main(String[] args) {
         //Company company = new Company();
-        //System.out.println(company.countryFounded);
-        //System.out.println(company.getName());
+        //Sys.out.println(company.countryFounded);
+        //Sys.out.println(company.getName());
 
         //company.name = "IBM";
         Checker checker = new Checker();
-        //System.out.println(checker.checkCompanyName(company.name));
-        //System.out.println(checker.companyNamesValidatedCount);
+        //Sys.out.println(checker.checkCompanyName(company.name));
+        //Sys.out.println(checker.companyNamesValidatedCount);
 
 
 

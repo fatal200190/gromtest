@@ -15,7 +15,7 @@ public class ArraysPractice {
         //однаковые элементы +
 
 //        int[] array1 = {};
-//        System.out.println(maxElement(array1));
+//        Sys.out.println(maxElement(array1));
 
         int[] array2 = {-10, -110, -555, -1000, -45, -60, -10};
         System.out.println(maxElement(array2));
@@ -30,7 +30,7 @@ public class ArraysPractice {
         //количество совпадений +
 
 //        int[] array4 = {};
-//        System.out.println(nCount(array4,2));
+//        Sys.out.println(nCount(array4,2));
 
         int[] array5 = {-10, -110, -555, -1000, -45, -60, -10};
         System.out.println(nCount(array5,100));
