@@ -38,6 +38,30 @@ public class Capability implements Comparable<Capability> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Capability that = (Capability) o;
+
+        if (id != that.id) return false;
+        if (isActive != that.isActive) return false;
+        if (!channelName.equals(that.channelName)) return false;
+        if (!fingerprint.equals(that.fingerprint)) return false;
+        return dateCreated.equals(that.dateCreated);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + channelName.hashCode();
+        result = 31 * result + fingerprint.hashCode();
+        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + dateCreated.hashCode();
+        return result;
+    }
+
+    @Override
     public int compareTo(Capability capability) {
         System.out.println("compareTo is used");
         return (int) (this.id - capability.getId());
