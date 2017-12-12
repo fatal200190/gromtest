@@ -7,26 +7,19 @@ public class FullComparator implements Comparator<Capability> {
 
     @Override
     public int compare(Capability o1, Capability o2) {
-        if (o1.getChannelName() == null || o2.getChannelName() == null)
-            return nullReplacement(o1.getChannelName(), o2.getChannelName());
-        else if (!o1.getChannelName().equals(o2.getChannelName()))
-            return o1.getChannelName().compareTo(o2.getChannelName());
-        else if (o1.getFingerprint() == null || o2.getFingerprint() == null)
-            return nullReplacement(o1.getFingerprint(), o2.getFingerprint());
-        else if (!o1.getFingerprint().equals(o2.getFingerprint()))
-            return o1.getFingerprint().compareTo(o2.getFingerprint());
-        else if (o1.getDateCreated() == null || o2.getDateCreated() == null)
-            return nullReplacement(o1.getDateCreated(), o2.getDateCreated());
-        else if (o1.getDateCreated() != o2.getDateCreated())
-            return (int) (o1.getDateCreated().getTime() - o2.getDateCreated().getTime());
-        else return 0;
+        if (itemCheck(o1.getChannelName(),o2.getChannelName()) != 0)
+            return itemCheck(o1.getChannelName(),o2.getChannelName());
+        if (itemCheck(o1.getFingerprint(),o2.getFingerprint()) != 0)
+            return itemCheck(o1.getFingerprint(),o2.getFingerprint());
+        return itemCheck(o1.getDateCreated(),o2.getDateCreated());
+
     }
 
-        private<T> int nullReplacement(T t1, T t2) {
-            if (t1 != null && t2 == null)
+        private<T extends Comparable> int itemCheck(T t1, T t2) {
+            if (t1 == null)
+                return (t2 == null) ? 0 : 1;
+            if (t2 == null)
                 return -1;
-            else if (t1 == null && t2 != null)
-                return 1;
-            else return 0;
+            return  t1.compareTo(t2);
         }
 }
