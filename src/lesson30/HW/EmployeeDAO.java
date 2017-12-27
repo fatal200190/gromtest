@@ -10,22 +10,17 @@ public class EmployeeDAO {
         employees.add(employee);
         return employee;
     }
-    public Set<Employee> findEmployeeByProject(Department department, String project){
-        Set<Employee>result = new HashSet<>();
-        for (Employee employee : department.getEmployees()){
-            if (employee != null && findProjectFromEmployee(employee,project))
-                result.add(employee);
+
+    public Set<Employee> employeesByProject(String projectName){
+        Set<Employee> result = new HashSet<>();
+        for (Employee employee : employees){
+            for (Project project : employee.getProjects()){
+                if (project.getName() != null && project.getName().equals(projectName)) {
+                    result.add(employee);
+                }
+            }
         }
         return result;
-    }
-
-    public boolean findProjectFromEmployee(Employee employee, String projectName){
-        for (Project project : employee.getProjects()){
-            if (project.getName() != null && project.getName().equals(projectName))
-                return true;
-            break;
-        }
-        return false;
     }
 
 }
