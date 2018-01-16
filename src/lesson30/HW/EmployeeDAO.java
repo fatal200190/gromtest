@@ -1,9 +1,7 @@
 package lesson30.HW;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class EmployeeDAO {
     private Set<Employee> employees = new HashSet<>();
@@ -20,9 +18,13 @@ public class EmployeeDAO {
     public Set<Employee> employeesByProject(String projectName){
         Set<Employee> result = new HashSet<>();
         for (Employee employee : employees){
+            if (employee != null){
             for (Project project : employee.getProjects()){
+                if (project != null){
                 if (project.getName() != null && project.getName().equals(projectName)) {
                     result.add(employee);
+                }
+                }
                 }
             }
         }
@@ -30,8 +32,11 @@ public class EmployeeDAO {
     }
 
     public Set<Project> projectsByEmployee(Employee employee) throws Exception {
+        if (employee == null){
+            throw new Exception("Empolyee can not be null");
+        }
         for (Employee em : employees){
-            if (em == employee){
+            if (em != null && em.equals(employee)){
                 return em.getProjects();
             }
         }
@@ -41,7 +46,7 @@ public class EmployeeDAO {
     public Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType){
         Set<Employee> result = new HashSet<>();
         for (Employee em : employees){
-            if (em.getDepartment().getType().equals(departmentType) && em.getProjects().isEmpty()){
+            if (em != null && em.getDepartment().getType() != null && em.getDepartment().getType().equals(departmentType) && em.getProjects().isEmpty()){
                 result.add(em);
             }
         }
@@ -58,38 +63,35 @@ public class EmployeeDAO {
         return result;
     }
 
-    public Set<Employee> employeesByTeamLead(Employee lead) {
+    public Set<Employee> employeesByTeamLead(Employee lead) throws Exception {
             Set<Employee> result = new HashSet<>();
-
-            for (Project project : lead.getProjects()){
-            result.addAll(employeesByProject(project.getName()));
+            if (lead == null){
+                throw new Exception("Lead can not be null");
             }
-
-        Iterator<Employee>iterator = result.iterator();
-        while (iterator.hasNext()){
-            Employee employee = iterator.next();
-            if(employee.getPosition().equals(Position.TEAM_LEAD) || employee.getPosition().equals(Position.LEAD_DESIGNER)){
-                iterator.remove();
-            }
+        for (Employee employee : employees){
+                if(employee != null){
+                    for (Project project : employee.getProjects()){
+                        if (project != null){
+                        if (project != null && lead.getProjects().contains(project) && !employee.getPosition().equals(Position.TEAM_LEAD) &&
+                                !employee.getPosition().equals(Position.LEAD_DESIGNER)) {
+                            result.add(employee);
+                        }
+                        }
+                    }
+                }
         }
             return result;
     }
 
-    public Set<Employee> employeesByProjectEmployee(Employee employee){
-        Set<Employee> result = new HashSet<>();
-        for (Employee em : employees){
-            if (em.getProjects().equals(employee.getProjects())){
-                result.add(em);
-            }
+    public Set<Employee> employeesByProjectEmployee(Employee employee) throws Exception {
+        if (employee.getProjects().isEmpty()){
+            throw new Exception("Employee has not projects");
         }
-        return result;
-    }
-
-    public Set<Employee> employeesByCustomerProjects(Customer customer){
         Set<Employee> result = new HashSet<>();
         for (Employee em : employees){
-            for (Project project : em.getProjects()){
-                if (project.getCustomer().equals(customer)){
+            if (em != null) {
+                for (Project project : em.getProjects()){
+                    if (employee.getProjects().contains(project))
                     result.add(em);
                 }
             }
@@ -97,25 +99,61 @@ public class EmployeeDAO {
         return result;
     }
 
-    public Set<Employee> teamLeadsByEmployee(Employee employee){
+    public Set<Employee> employeesByCustomerProjects(Customer customer) throws Exception {
+        if (customer == null){
+            throw new Exception("Customer null");
+        }
+        Set<Employee> result = new HashSet<>();
+        for (Employee em : employees){
+            if (em != null){
+            for (Project project : em.getProjects()) {
+                if (project != null){
+                if (project.getCustomer() != null && project.getCustomer().equals(customer)) {
+                    result.add(em);
+                }
+                }
+                }
+            }
+        }
+        return result;
+    }
+
+    public Set<Employee> teamLeadsByEmployee(Employee employee) throws Exception {
+        if (employee == null){
+            throw new Exception("Employee is null");
+        }
+        if (employee.getProjects().isEmpty()){
+            throw new Exception("Employee has not projects with lead");
+        }
         Set<Employee> result = new HashSet<>();
         for (Project project : employee.getProjects()){
+            if (project != null){
             for (Employee em : employeesByProject(project.getName())){
-                if (em.getPosition().equals(Position.TEAM_LEAD) || em.getPosition().equals(Position.LEAD_DESIGNER)){
-                    result.add(em);
+                if (em != null) {
+                    if (em.getPosition() != null && em.getPosition().equals(Position.TEAM_LEAD) || em.getPosition().equals(Position.LEAD_DESIGNER)) {
+                        result.add(em);
+                    }
+                    }
                 }
             }
         }
         return result;
     }
 
-    public Set<Project> projectsByCustomer(Customer customer){
+    public Set<Project> projectsByCustomer(Customer customer) throws Exception {
+        if (customer == null){
+            throw new Exception("Customer is null");
+        }
         Set<Project> result = new HashSet<>();
         for (Employee employee : employees){
-            for (Project project : employee.getProjects()){
-                if (project.getCustomer().equals(customer)){
-                    result.add(project);
+            if (employee != null){
+            for (Project project : employee.getProjects()) {
+                if (project != null) {
+                    if (project.getCustomer().equals(customer)) {
+                        result.add(project);
+                    }
                 }
+            }
             }
         }
         return result;

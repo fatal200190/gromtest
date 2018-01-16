@@ -30,19 +30,19 @@ public class Controller {
         return employeeDAO.employeesByTeamLead(lead);
     }
 
-    public Set<Employee> employeesByProjectEmployee(Employee employee){
+    public Set<Employee> employeesByProjectEmployee(Employee employee) throws Exception {
         return employeeDAO.employeesByProjectEmployee(employee);
     }
 
-    public Set<Employee> employeesByCustomerProjects(Customer customer){
+    public Set<Employee> employeesByCustomerProjects(Customer customer) throws Exception {
         return employeeDAO.employeesByCustomerProjects(customer);
     }
 
-    public Set<Employee> teamLeadsByEmployee(Employee employee){
+    public Set<Employee> teamLeadsByEmployee(Employee employee) throws Exception {
         return employeeDAO.teamLeadsByEmployee(employee);
     }
 
-    public Set<Project> projectsByCustomer(Customer customer){
+    public Set<Project> projectsByCustomer(Customer customer) throws Exception {
         return employeeDAO.projectsByCustomer(customer);
     }
 
