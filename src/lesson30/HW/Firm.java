@@ -8,9 +8,6 @@ public class Firm {
     private Set<Department> departments;
     private Set<Customer> customers;
 
-    public Firm() {
-    }
-
     public Firm(Date dateFounded, Set<Department> departments, Set<Customer> customers) {
         this.dateFounded = dateFounded;
         this.departments = departments;
