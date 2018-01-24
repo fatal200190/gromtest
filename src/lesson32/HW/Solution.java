@@ -1,6 +1,8 @@
 package lesson32.HW;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Solution {
@@ -14,15 +16,15 @@ public class Solution {
 
         while (n > 0) {
 
-            Scanner scan = new Scanner(System.in);
+            InputStreamReader reader = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(reader);
 
-            String str = scan.nextLine();
-
-            String[] numbers = str.split(" ");
+            String[] numbers = br.readLine().split(" ");
 
             if (!validate(numbers)) {
                 n--;
-                errorCounter(n);
+                if (n==0){System.out.println("Your numbers are wrong. Number of attempts exceeded");}
+                else {System.out.println("Your numbers are wrong. You have " + n +" attempts to try again");}
             } else {
                 for (String s : numbers) {
                     sum += Integer.parseInt(s);
@@ -33,10 +35,9 @@ public class Solution {
     }
 
     private boolean validate (String[] numbers){
-        if (numbers.length != 10){
+        if (numbers.length != 10)
             return false;
-        }
-        else
+
         try{
             for (String s : numbers) {
                 if (Integer.parseInt(s) > 100){
@@ -50,9 +51,4 @@ public class Solution {
         return true;
     }
 
-    private void errorCounter(int n){
-        if (n==0){System.out.println("Your numbers are wrong. Number of attempts exceeded");}
-        else {System.out.println("Your numbers are wrong. You have " + n +" attempts to try again");
-        }
-    }
 }
