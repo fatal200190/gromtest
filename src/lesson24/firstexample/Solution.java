@@ -9,7 +9,7 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" +
+        return "WriteToFileFromConsole{" +
                 "name='" + name + '\'' +
                 '}';
     }

@@ -7,7 +7,7 @@ public class Demo <T>{
 //        //print
 //    }
 
-    //    private printSolution(Solution solution){
+    //    private printSolution(WriteToFileFromConsole solution){
 //        //print
 //    }
 

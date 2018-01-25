@@ -4,12 +4,9 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 
-public class Solution {
-    public static void main(String[] args) {
-        writeToFileFromConsole("C:\\Users\\Alex\\Desktop\\test.txt");
-    }
+public class WriteToFile {
 
-    public static void writeToFileFromConsole(String path) {
+    public void writeToFileFromConsole(String path) {
         if (!new File(path).exists()) {
             System.err.println("File with path " + path + " not found");
             return;
