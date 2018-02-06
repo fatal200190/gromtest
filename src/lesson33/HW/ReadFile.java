@@ -12,11 +12,7 @@ public class ReadFile {
         try {
             readFile(br.readLine());
         }catch (IOException e){
-            try {
-                System.err.println("Can't read file by path" + br.readLine());
-            }catch (IOException i){
-                System.out.println("File reading error");
-            }
+                System.err.println("Can't read file by path");
         }finally {
             IOUtils.closeQuietly(reader);
             IOUtils.closeQuietly(br);
