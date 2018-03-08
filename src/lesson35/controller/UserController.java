@@ -5,10 +5,17 @@ import lesson35.model.User;
 
 public class UserController {
 
-    private UserService userService = new UserService();
+    UserService userService = new UserService();
 
     public User registerUser(User user) throws Exception {
-        return userService.registerUser(user);
+        userService.registerUser(user);
+        return user;
+    }
+    public void login(String userName, String password)  throws Exception {
+        userService.login(userName,password);
+    }
+    public void logout() throws Exception {
+        userService.logout();
     }
 
 }
